@@ -45,6 +45,10 @@ document.querySelector('#app').innerHTML = `
                     <span class="icon"><i class="ph ph-warning-circle"></i></span>
                     <span class="label">Issues</span>
                 </button>
+                <button class="nav-item" id="nav-details" title="Part Details">
+                    <span class="icon"><i class="ph ph-list-dashes"></i></span>
+                    <span class="label">Details</span>
+                </button>
                 <button class="nav-item" id="nav-ai" title="AI Assistant">
                     <span class="icon"><i class="ph ph-chat-circle-text"></i></span>
                     <span class="label">Ask AI</span>
@@ -67,6 +71,17 @@ document.querySelector('#app').innerHTML = `
                     <button class="close-panel"><i class="ph ph-x"></i></button>
                 </header>
                 <div class="panel-body" id="issues-list">
+                    <div class="skeleton-loader"></div>
+                </div>
+            </div>
+
+            <!-- Details Panel -->
+            <div class="panel-container hidden" id="details-panel">
+                <header class="panel-header">
+                    <h2>Part Details</h2>
+                    <button class="close-panel"><i class="ph ph-x"></i></button>
+                </header>
+                <div class="panel-body" id="details-list">
                     <div class="skeleton-loader"></div>
                 </div>
             </div>
@@ -112,6 +127,9 @@ document.querySelector('#app').innerHTML = `
                     
                     <h4>Prevention</h4>
                     <div id="modal-prevention"></div>
+
+                    <h4>Description</h4>
+                    <div id="modal-description"></div>
                 </div>
             </div>
             <footer class="modal-footer">

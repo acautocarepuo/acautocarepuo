@@ -8,12 +8,14 @@ export class PanelManager {
             home: document.getElementById('nav-home'),
             engine: document.getElementById('nav-engine'),
             issues: document.getElementById('nav-issues'),
+            details: document.getElementById('nav-details'),
             ai: document.getElementById('nav-ai')
         };
 
         // Panels
         this.panels = {
             issues: document.getElementById('issues-panel'),
+            details: document.getElementById('details-panel'),
             ai: document.getElementById('ai-panel')
         };
 
@@ -24,6 +26,7 @@ export class PanelManager {
             img: document.getElementById('modal-img'),
             issues: document.getElementById('modal-issues'),
             prevention: document.getElementById('modal-prevention'),
+            description: document.getElementById('modal-description'),
             askBtn: document.getElementById('btn-ask-ai')
         };
 
@@ -31,6 +34,7 @@ export class PanelManager {
 
         this.setupEventListeners();
         this.loadCommonIssues();
+        this.loadPartDetails();
 
         // Hook into scene transitions if method exists, else manual
         // Extending SceneManager via callback injection
@@ -67,6 +71,11 @@ export class PanelManager {
         this.navItems.issues.addEventListener('click', () => {
             this.setActiveNav('issues');
             this.openPanel('issues');
+        });
+
+        this.navItems.details.addEventListener('click', () => {
+            this.setActiveNav('details');
+            this.openPanel('details');
         });
 
         this.navItems.ai.addEventListener('click', () => {
@@ -128,11 +137,15 @@ export class PanelManager {
         this.modal.img.onerror = () => this.modal.img.src = 'https://via.placeholder.com/300x150';
 
         // Format lists
-        const issues = item['Part Common Issue (Seperate by /)'].split('/').map(i => `<p>• ${i.trim()}</p>`).join('');
-        this.modal.issues.innerHTML = issues;
+        const issues = (item['Part Common Issue (Seperate by /)'] || '').split('/').map(i => `<p>• ${i.trim()}</p>`).join('');
+        this.modal.issues.innerHTML = issues || '<p>No common issues listed.</p>';
 
-        const prevention = item['Part Prevention Method  (Seperate by /)'].split('/').map(i => `<p>• ${i.trim()}</p>`).join('');
-        this.modal.prevention.innerHTML = prevention;
+        const prevention = (item['Part Prevention Method (Seperate by /)'] || '').split('/').map(i => `<p>• ${i.trim()}</p>`).join('');
+        this.modal.prevention.innerHTML = prevention || '<p>No prevention methods listed.</p>';
+
+        // Description
+        const description = item['Part Details'] || 'No additional details available.';
+        this.modal.description.innerHTML = `<p>${description}</p>`;
 
         // Setup AI Button
         this.modal.askBtn.onclick = () => {
@@ -200,6 +213,41 @@ export class PanelManager {
                 `;
 
                 // Click to Open Modal instead of AI directly
+                card.addEventListener('click', () => {
+                    this.openModal(item);
+                });
+
+                container.appendChild(card);
+            });
+        } catch (e) {
+            container.innerHTML = 'Failed to load data.';
+        }
+    }
+
+    async loadPartDetails() {
+        const container = document.getElementById('details-list');
+        try {
+            const res = await fetch('https://opensheet.elk.sh/16Y_-z6ar4Xd_5esJKjEJtVzwKPt8Mnelb4HeJsKZkjw/data');
+            const data = await res.json();
+
+            container.innerHTML = '';
+
+            data.forEach(item => {
+                if (!item['Part Name']) return;
+
+                const card = document.createElement('div');
+                card.className = 'issue-card'; // Reusing issue-card for consistent styling
+                card.innerHTML = `
+                    <div class="card-content">
+                        <img src="${item['Part Image (URL)']}" class="issue-img" onerror="this.src='https://via.placeholder.com/300x150'">
+                        <div class="issue-name">${item['Part Name']}</div>
+                        <div class="issue-list">
+                            ${item['Part Details']}
+                        </div>
+                    </div>
+                `;
+
+                // Click to Open Modal
                 card.addEventListener('click', () => {
                     this.openModal(item);
                 });
