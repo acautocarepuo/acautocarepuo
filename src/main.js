@@ -13,7 +13,7 @@ document.querySelector('#app').innerHTML = `
             <div class="loader-container">
                 <div class="loader-progress"></div>
             </div>
-            <div class="loading-text">Preparing 3D Engine...</div>
+            <div class="loading-text">Preparing 3D Viewer...</div>
         </div>
     </div>
 
@@ -37,9 +37,9 @@ document.querySelector('#app').innerHTML = `
                     <span class="icon"><i class="ph ph-cube"></i></span>
                     <span class="label">View</span>
                 </button>
-                <button class="nav-item" id="nav-engine" title="Engine Bay">
-                    <span class="icon"><i class="ph ph-engine"></i></span>
-                    <span class="label">Engine</span>
+                <button class="nav-item" id="nav-aircond" title="Aircond Circuit">
+                    <span class="icon"><i class="ph ph-circuitry"></i></span>
+                    <span class="label">Aircond</span>
                 </button>
                 <button class="nav-item" id="nav-issues" title="Diagnostics">
                     <span class="icon"><i class="ph ph-warning-circle"></i></span>
@@ -72,6 +72,20 @@ document.querySelector('#app').innerHTML = `
                 </header>
                 <div class="panel-body" id="issues-list">
                     <div class="skeleton-loader"></div>
+                </div>
+            </div>
+
+            <!-- Aircond Circuit Panel -->
+            <div class="panel-container hidden" id="aircond-panel">
+                <header class="panel-header">
+                    <h2>Aircond Circuit</h2>
+                    <button class="close-panel"><i class="ph ph-x"></i></button>
+                </header>
+                <div class="panel-body">
+                    <div class="aircond-gallery-intro">
+                        Four aircond circuit reference images live in <code>/public/ASSETS/Aircond Circuit/</code>.
+                    </div>
+                    <div class="aircond-gallery" id="aircond-gallery"></div>
                 </div>
             </div>
 

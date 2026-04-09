@@ -6,7 +6,7 @@ export class PanelManager {
         // Navigation Items
         this.navItems = {
             home: document.getElementById('nav-home'),
-            engine: document.getElementById('nav-engine'),
+            aircond: document.getElementById('nav-aircond'),
             issues: document.getElementById('nav-issues'),
             details: document.getElementById('nav-details'),
             ai: document.getElementById('nav-ai')
@@ -14,6 +14,7 @@ export class PanelManager {
 
         // Panels
         this.panels = {
+            aircond: document.getElementById('aircond-panel'),
             issues: document.getElementById('issues-panel'),
             details: document.getElementById('details-panel'),
             ai: document.getElementById('ai-panel')
@@ -33,6 +34,7 @@ export class PanelManager {
         this.loader = document.getElementById('transition-loader');
 
         this.setupEventListeners();
+        this.loadAircondGallery();
         this.loadCommonIssues();
         this.loadPartDetails();
 
@@ -60,12 +62,9 @@ export class PanelManager {
             this.closeAllPanels();
         });
 
-        this.navItems.engine.addEventListener('click', () => {
-            if (this.sceneManager.state.currentView !== 'engine') {
-                this.sceneManager.switchToEngineView();
-            }
-            this.setActiveNav('engine');
-            this.closeAllPanels();
+        this.navItems.aircond.addEventListener('click', () => {
+            this.setActiveNav('aircond');
+            this.openPanel('aircond');
         });
 
         this.navItems.issues.addEventListener('click', () => {
@@ -187,6 +186,62 @@ export class PanelManager {
 
         container.appendChild(div);
         container.scrollTop = container.scrollHeight;
+    }
+
+    loadAircondGallery() {
+        const container = document.getElementById('aircond-gallery');
+        if (!container) return;
+
+        const images = [
+            {
+                src: '/ASSETS/Aircond Circuit/aircond-circuit-1.jpg',
+                title: 'Aircond Circuit 1'
+            },
+            {
+                src: '/ASSETS/Aircond Circuit/aircond-circuit-2.jpg',
+                title: 'Aircond Circuit 2'
+            },
+            {
+                src: '/ASSETS/Aircond Circuit/aircond-circuit-3.jpg',
+                title: 'Aircond Circuit 3'
+            },
+            {
+                src: '/ASSETS/Aircond Circuit/aircond-circuit-4.jpg',
+                title: 'Aircond Circuit 4'
+            }
+        ];
+
+        container.innerHTML = '';
+
+        images.forEach((image) => {
+            const card = document.createElement('div');
+            card.className = 'aircond-card';
+            card.innerHTML = `
+                <img src="${image.src}" alt="${image.title}" class="aircond-img">
+                <div class="aircond-meta">
+                    <div class="aircond-title">${image.title}</div>
+                    <div class="aircond-caption">Replace this file with your final circuit image.</div>
+                </div>
+            `;
+
+            const img = card.querySelector('img');
+            img.onerror = () => {
+                img.replaceWith(this.createMissingAircondState(image.title));
+            };
+
+            container.appendChild(card);
+        });
+    }
+
+    createMissingAircondState(title) {
+        const state = document.createElement('div');
+        state.className = 'aircond-missing';
+        state.innerHTML = `
+            <div class="aircond-missing-icon"><i class="ph ph-image-broken"></i></div>
+            <div class="aircond-title">${title}</div>
+            <div class="aircond-caption">Add this image to /public/ASSETS/Aircond Circuit/.</div>
+        `;
+        return state;
     }
 
     async loadCommonIssues() {

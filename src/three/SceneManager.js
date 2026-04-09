@@ -12,12 +12,11 @@ export class SceneManager {
         this.clock = new THREE.Clock();
 
         this.models = {
-            car: null,
-            engine: null
+            car: null
         };
 
         this.state = {
-            currentView: 'exterior', // 'exterior' | 'engine'
+            currentView: 'exterior',
             isLoading: true
         };
 
@@ -118,18 +117,6 @@ export class SceneManager {
                 // Auto-center might be needed depending on model origin
             }
 
-            // Load Engine
-            this.models.engine = await this.assetLoader.loadModel(
-                '/ASSETS/3D%20Model/car%20engine%203d%20model.glb',
-                (p) => onProgress('Loading Engine...', 0.5 + (p * 0.5))
-            );
-
-            // Adjust Engine
-            if (this.models.engine) {
-                this.models.engine.visible = false;
-                this.models.engine.scale.setScalar(1);
-            }
-
             this.state.isLoading = false;
 
         } catch (error) {
@@ -138,30 +125,12 @@ export class SceneManager {
         }
     }
 
-    switchToEngineView() {
-        if (this.state.currentView === 'engine') return;
-
-        if (this.onTransitionStart) this.onTransitionStart();
-
-        // Animate Camera
-        this.cameraRig.transitionTo('engine', () => {
-            // Swap Models during transition or fade them
-            this.fadeModelOut(this.models.car);
-            this.fadeModelIn(this.models.engine);
-
-            if (this.onTransitionEnd) this.onTransitionEnd();
-        });
-
-        this.state.currentView = 'engine';
-    }
-
     switchToExteriorView() {
         if (this.state.currentView === 'exterior') return;
 
         if (this.onTransitionStart) this.onTransitionStart();
 
         this.cameraRig.transitionTo('exterior', () => {
-            this.fadeModelOut(this.models.engine);
             this.fadeModelIn(this.models.car);
 
             if (this.onTransitionEnd) this.onTransitionEnd();

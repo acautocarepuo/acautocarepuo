@@ -25,10 +25,6 @@ export class CameraRig {
             exterior: {
                 pos: new THREE.Vector3(4, 2, 6),
                 target: new THREE.Vector3(0, 0.5, 0)
-            },
-            engine: {
-                pos: new THREE.Vector3(1.5, 2, 0), // Closer/High angle
-                target: new THREE.Vector3(0, 0.8, 0)
             }
         };
     }
