@@ -194,19 +194,11 @@ export class PanelManager {
 
         const images = [
             {
-                src: '/ASSETS/Aircond Circuit/aircond-circuit-1.jpg',
-                title: 'Aircond Circuit 1'
-            },
-            {
-                src: '/ASSETS/Aircond Circuit/aircond-circuit-2.jpg',
-                title: 'Aircond Circuit 2'
-            },
-            {
-                src: '/ASSETS/Aircond Circuit/aircond-circuit-3.jpg',
+                src: 'https://aienginehelper.netlify.app/ASSETS/Aircond%20Circuit/aircond_3.png',
                 title: 'Aircond Circuit 3'
             },
             {
-                src: '/ASSETS/Aircond Circuit/aircond-circuit-4.jpg',
+                src: 'https://aienginehelper.netlify.app/ASSETS/Aircond%20Circuit/aircond_4.png',
                 title: 'Aircond Circuit 4'
             }
         ];
@@ -220,7 +212,7 @@ export class PanelManager {
                 <img src="${image.src}" alt="${image.title}" class="aircond-img">
                 <div class="aircond-meta">
                     <div class="aircond-title">${image.title}</div>
-                    <div class="aircond-caption">Replace this file with your final circuit image.</div>
+                    <div class="aircond-caption">Reference image for the aircond circuit layout.</div>
                 </div>
             `;
 
@@ -246,37 +238,156 @@ export class PanelManager {
 
     async loadCommonIssues() {
         const container = document.getElementById('issues-list');
-        try {
-            const res = await fetch('https://opensheet.elk.sh/16Y_-z6ar4Xd_5esJKjEJtVzwKPt8Mnelb4HeJsKZkjw/data');
-            const data = await res.json();
+        if (!container) return;
 
-            container.innerHTML = '';
+        const troubleshootingGuide = [
+            {
+                problem: 'Unit pemampat tidak hidup',
+                causes: [
+                    {
+                        title: 'Fius terbakar / putus',
+                        checks: [
+                            'Uji keterusan fius dengan menggunakan multimeter (Ohm).',
+                            'Menguji kehadiran arus menggunakan test lamp.',
+                            'Jika rosak, gantikan fius.'
+                        ]
+                    },
+                    {
+                        title: 'Gegelung magnet terbakar / putus',
+                        checks: [
+                            'Ujian keterusan gegelung dengan menggunakan multimeter (Ohm).',
+                            'Menguji kehadiran arus menggunakan test lamp.',
+                            'Jika rosak, gantikan gegelung magnet.'
+                        ]
+                    },
+                    {
+                        title: 'Bahan pendingin tidak mencukupi / tiada',
+                        checks: [
+                            'Memasangkan tolok pancarongga dan dapatkan bacaan tekanan pada sistem.',
+                            'Jika kurang bahan pendingin atau tiada bahan pendingin dalam sistem, buat ujian tekanan (nitrogen), cari bahagian yang bocor dan baiki.'
+                        ]
+                    },
+                    {
+                        title: 'Thermal amplifier rosak',
+                        checks: [
+                            'Lakukan pengujian keterusan pada komponen thermal amplifier.',
+                            'Ganti thermal amplifier jika rosak.'
+                        ]
+                    }
+                ]
+            },
+            {
+                problem: 'Unit pemampat hidup mati',
+                causes: [
+                    {
+                        title: 'Pemeluwap terlalu panas',
+                        checks: [
+                            'Periksa sama ada kipas pemeluwap tidak berfungsi.',
+                            'Periksa sirip pemeluwap yang mereput atau kotor.',
+                            'Pastikan tiada objek yang menghalang pengaliran udara di bahagian pemeluwap.',
+                            'Periksa penapis pengering jika tersumbat.',
+                            'Gantikan mana-mana komponen berkaitan selepas pemeriksaan dibuat.'
+                        ]
+                    },
+                    {
+                        title: 'Suis tekanan bermasalah',
+                        checks: [
+                            'Uji pendawaian suis tekanan.',
+                            'Uji kecekapan suis tekanan.'
+                        ]
+                    },
+                    {
+                        title: 'Suis laras suhu bermasalah',
+                        checks: [
+                            'Periksa terminal penyambungan pada terminal suis laras suhu.',
+                            'Periksa keadaan sesentuh pada suis laras suhu.',
+                            'Ganti komponen jika keadaan sesentuh bermasalah.'
+                        ]
+                    }
+                ]
+            },
+            {
+                problem: 'Kereta bergerak sejuk berhenti panas',
+                causes: [
+                    {
+                        title: 'Kipas pemeluwap lemah / tidak berfungsi',
+                        checks: [
+                            'Periksa fius kipas pemeluwap.',
+                            'Periksa geganti kipas pemeluwap.',
+                            'Periksa motor kipas pemeluwap.',
+                            'Ganti komponen yang mengalami kerosakan.'
+                        ]
+                    }
+                ]
+            },
+            {
+                problem: 'Angin dingin dalam kereta tidak kuat',
+                causes: [
+                    {
+                        title: 'Penapis angin kabin kotor',
+                        checks: [
+                            'Periksa keadaan penapis udara kabin.',
+                            'Cuci jika jenis yang boleh dicuci.',
+                            'Tukar baru jika cabin filter jenis pakai buang.'
+                        ]
+                    },
+                    {
+                        title: 'Sirip penyejat tersumbat dengan habuk kotoran',
+                        checks: [
+                            'Periksa keadaan sirip penyejat.',
+                            'Cuci dengan pencuci kimia jika kekotoran terlalu teruk.',
+                            'Tukar penyejat baru bagi kereta yang memerlukan kerja menanggalkan dashboard untuk mengeluarkan penyejat.'
+                        ]
+                    },
+                    {
+                        title: 'Kipas penghembus lemah / berhabuk',
+                        checks: [
+                            'Periksa kelajuan pusingan motor penghembus.',
+                            'Periksa keadaan habuk pada bilah kipas penghembus.',
+                            'Pastikan tiada objek lain disedut masuk ke dalam motor kipas penghembus.',
+                            'Jika putaran kipas penghembus perlahan, gantikan carbon brush baru atau tukar set motor kipas penghembus yang baru.'
+                        ]
+                    }
+                ]
+            }
+        ];
 
-            data.forEach(item => {
-                if (!item['Part Name']) return;
+        container.innerHTML = `
+            <section class="issues-hero">
+                <div class="issues-kicker">Jadual 3.1</div>
+                <h3>Panduan Mengesan Masalah</h3>
+                <p>Rujukan pantas untuk semakan kerosakan aircond kereta, lengkap dengan punca biasa dan tindakan pemeriksaan yang boleh dibuat.</p>
+            </section>
+        `;
 
-                const card = document.createElement('div');
-                card.className = 'issue-card';
-                card.innerHTML = `
-                    <div class="card-content">
-                         <img src="${item['Part Image (URL)']}" class="issue-img" onerror="this.src='https://via.placeholder.com/300x150'">
-                        <div class="issue-name">${item['Part Name']}</div>
-                        <div class="issue-list">
-                            ${item['Part Common Issue (Seperate by /)'].split('/').slice(0, 2).map(i => `• ${i.trim()}`).join('<br>')}
+        troubleshootingGuide.forEach((section, index) => {
+            const card = document.createElement('article');
+            card.className = 'diagnostic-card';
+            card.innerHTML = `
+                <div class="diagnostic-card-top">
+                    <div class="diagnostic-badge">Masalah ${index + 1}</div>
+                    <h4 class="diagnostic-problem">${section.problem}</h4>
+                </div>
+                <div class="diagnostic-grid">
+                    ${section.causes.map(cause => `
+                        <div class="diagnostic-cause-card">
+                            <div class="diagnostic-label-row">
+                                <span class="diagnostic-label cause">Punca biasa kerosakan</span>
+                            </div>
+                            <div class="diagnostic-cause-title">${cause.title}</div>
+                            <div class="diagnostic-label-row">
+                                <span class="diagnostic-label action">Cara mengesan / membaiki</span>
+                            </div>
+                            <ul class="diagnostic-checklist">
+                                ${cause.checks.map(check => `<li>${check}</li>`).join('')}
+                            </ul>
                         </div>
-                    </div>
-                `;
+                    `).join('')}
+                </div>
+            `;
 
-                // Click to Open Modal instead of AI directly
-                card.addEventListener('click', () => {
-                    this.openModal(item);
-                });
-
-                container.appendChild(card);
-            });
-        } catch (e) {
-            container.innerHTML = 'Failed to load data.';
-        }
+            container.appendChild(card);
+        });
     }
 
     async loadPartDetails() {
