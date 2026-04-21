@@ -194,11 +194,11 @@ export class PanelManager {
 
         const images = [
             {
-                src: 'https://aienginehelper.netlify.app/ASSETS/Aircond%20Circuit/aircond_3.png',
+                src: '/ASSETS/Aircond%20Circuit/aircond-circuit-3.jpg',
                 title: 'Aircond Circuit 3'
             },
             {
-                src: 'https://aienginehelper.netlify.app/ASSETS/Aircond%20Circuit/aircond_4.png',
+                src: '/ASSETS/Aircond%20Circuit/aircond-circuit-4.jpg',
                 title: 'Aircond Circuit 4'
             }
         ];
