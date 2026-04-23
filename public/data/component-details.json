@@ -1,0 +1,170 @@
+[
+  {
+    "Part Name": "Compressor (Pemampat)",
+    "Part Image (URL)": "/ASSETS/detail-components/01-compressor-1.png",
+    "Part Gallery (URLs)": [
+      "/ASSETS/detail-components/01-compressor-1.png"
+    ],
+    "Part Details": "Komponen yang bekerja untuk memampatkan bahan pendingin dalam bentuk gas kepada tekanan yang tinggi untuk masuk ke dalam condenser. Sistem berfungsi dengan menggunakan tali sawat unutk mendapatkan daya pusingan dari enjin kereta",
+    "Part Function": [
+      "Komponen yang bekerja untuk memampatkan bahan pendingin dalam bentuk gas kepada tekanan yang tinggi untuk masuk ke dalam condenser.",
+      "Sistem berfungsi dengan menggunakan tali sawat unutk mendapatkan daya pusingan dari enjin kereta"
+    ],
+    "Part Types": [
+      "Jenis Reciprocating",
+      "Jenis Crank Shaft",
+      "Jenis Swash Plate",
+      "Jenis Wobble Plate",
+      "Jenis Rotary",
+      "Jenis Through Vane"
+    ],
+    "Part Common Issue (Seperate by /)": "",
+    "Part Prevention Method (Seperate by /)": ""
+  },
+  {
+    "Part Name": "Condenser (Pemeluwap)",
+    "Part Image (URL)": "/ASSETS/detail-components/02-condenser-1.jpeg",
+    "Part Gallery (URLs)": [
+      "/ASSETS/detail-components/02-condenser-1.jpeg",
+      "/ASSETS/detail-components/02-condenser-2.png"
+    ],
+    "Part Details": "Menyingkirkan haba daripada sistem penyaman udara kereta dengan dibantu oleh kipas dan angin semasa kereta sedang bergerak. Bahan pendingin merupakan bahan kimia yang mudah berubah bentuk. Bahan pendingin yang memasuki condenser berbentuk gas yang bertekanan dan bersuhu tinggi diubah bentuk menjadi cecair dengan tekanan yang stabil dan suhu yang rendah. Condenser berada di bahagian hadapan radiator dan pada sistem penyaman udara kereta berada di antara compressor dan expansion valve.",
+    "Part Function": [
+      "Menyingkirkan haba daripada sistem penyaman udara kereta dengan dibantu oleh kipas dan angin semasa kereta sedang bergerak.",
+      "Bahan pendingin merupakan bahan kimia yang mudah berubah bentuk.",
+      "Bahan pendingin yang memasuki condenser berbentuk gas yang bertekanan dan bersuhu tinggi diubah bentuk menjadi cecair dengan tekanan yang stabil dan suhu yang rendah.",
+      "Condenser berada di bahagian hadapan radiator dan pada sistem penyaman udara kereta berada di antara compressor dan expansion valve."
+    ],
+    "Part Types": [],
+    "Part Common Issue (Seperate by /)": "",
+    "Part Prevention Method (Seperate by /)": ""
+  },
+  {
+    "Part Name": "Cooling Coil (Penyejat)",
+    "Part Image (URL)": "/ASSETS/detail-components/03-cooling-coil-1.png",
+    "Part Gallery (URLs)": [
+      "/ASSETS/detail-components/03-cooling-coil-1.png",
+      "/ASSETS/detail-components/03-cooling-coil-2.png"
+    ],
+    "Part Details": "Menyerap haba di dalam ruang kereta untuk menurunkan suhu udara dalam kereta. Cooling Coil juga berfungsi mengubah cecair bahan pendingin menjadi gas dingin. Bentuk Cooling Coil adalah lebih kurang dengan bentuk Condenser di mana gegelung dikelilingi oleh sirip-sirip. Bahan pendingin masuk dalam keadaan cecair dan keluar dalam keadaan gas.",
+    "Part Function": [
+      "Menyerap haba di dalam ruang kereta untuk menurunkan suhu udara dalam kereta.",
+      "Cooling Coil juga berfungsi mengubah cecair bahan pendingin menjadi gas dingin.",
+      "Bentuk Cooling Coil adalah lebih kurang dengan bentuk Condenser di mana gegelung dikelilingi oleh sirip-sirip.",
+      "Bahan pendingin masuk dalam keadaan cecair dan keluar dalam keadaan gas."
+    ],
+    "Part Types": [],
+    "Part Common Issue (Seperate by /)": "",
+    "Part Prevention Method (Seperate by /)": ""
+  },
+  {
+    "Part Name": "Expansion Valve (Injap Pengembangan)",
+    "Part Image (URL)": "/ASSETS/detail-components/04-expansion-valve-1.png",
+    "Part Gallery (URLs)": [
+      "/ASSETS/detail-components/04-expansion-valve-1.png",
+      "/ASSETS/detail-components/04-expansion-valve-2.png",
+      "/ASSETS/detail-components/04-expansion-valve-3.png"
+    ],
+    "Part Details": "Menurunkan tekanan dan suhu bahan pendingin sebelum menimbulkan kesan dingin pada Cooling Coil. Jenis injap pengembangan terma adalah injap yang biasa digunakan pada kenderaan. Jenis injap pengembangan ini boleh mengawal kuantiti aliran bahan pendingin supaya cecair bahan pendingin tersejat secara lengkap sebelum masuk ke dalam penyejat.",
+    "Part Function": [
+      "Menurunkan tekanan dan suhu bahan pendingin sebelum menimbulkan kesan dingin pada Cooling Coil.",
+      "Jenis injap pengembangan terma adalah injap yang biasa digunakan pada kenderaan.",
+      "Jenis injap pengembangan ini boleh mengawal kuantiti aliran bahan pendingin supaya cecair bahan pendingin tersejat secara lengkap sebelum masuk ke dalam penyejat."
+    ],
+    "Part Types": [
+      "Jenis-jenis injap pengembangan:",
+      "Jenis injap tekanan malar",
+      "Jenis injap pengembangan terma"
+    ],
+    "Part Common Issue (Seperate by /)": "",
+    "Part Prevention Method (Seperate by /)": ""
+  },
+  {
+    "Part Name": "Bahan Pendingin (Bahan pendingin)",
+    "Part Image (URL)": "/ASSETS/detail-components/05-bahan-pendingin-1.jpeg",
+    "Part Gallery (URLs)": [
+      "/ASSETS/detail-components/05-bahan-pendingin-1.jpeg",
+      "/ASSETS/detail-components/05-bahan-pendingin-2.png"
+    ],
+    "Part Details": "Bahan pendingin ialah bahan kimia yang mengalir dalam sistem penyaman udara kereta untuk memindahkan haba keluar dari kabin. R-12 mengandungi kloroflorokarbon (CFC) yang merosakkan ozon (O3) dan mempunyai Ozone Depletion Potential (ODP) dan Global Warming Potential (GWP) yang tinggi R-134a pula mempunyai GWP tinggi, manakala R-123yf lebih mesra alam dengan GWP yang rendah.",
+    "Part Function": [
+      "Bahan pendingin ialah bahan kimia yang mengalir dalam sistem penyaman udara kereta untuk memindahkan haba keluar dari kabin.",
+      "R-12 mengandungi kloroflorokarbon (CFC) yang merosakkan ozon (O3) dan mempunyai Ozone Depletion Potential (ODP) dan Global Warming Potential (GWP) yang tinggi",
+      "R-134a pula mempunyai GWP tinggi, manakala R-123yf lebih mesra alam dengan GWP yang rendah."
+    ],
+    "Part Types": [
+      "Jenis-jenis bahan pendingin:",
+      "R-12,",
+      "R-134a",
+      "R-123yf."
+    ],
+    "Part Common Issue (Seperate by /)": "",
+    "Part Prevention Method (Seperate by /)": ""
+  },
+  {
+    "Part Name": "Penapis Pengering (Filter Drier)",
+    "Part Image (URL)": "/ASSETS/detail-components/06-penapis-pengering-1.png",
+    "Part Gallery (URLs)": [
+      "/ASSETS/detail-components/06-penapis-pengering-1.png"
+    ],
+    "Part Details": "Penapis pengering terletak antara pemeluwap dan injap pengembangan Berfungsi untuk menyaring kotoran dan menyerap wap air menggunakan desiccant seperti silicagel (R-12) atau zeolit (R-134a). Ia juga menyimpan bahan pendingin sementara. Kerosakan akibat tersumbat boleh menyebabkan suhu penyaman udara tidak stabil, dan komponen ini perlu ditukar jika rosak.",
+    "Part Function": [
+      "Penapis pengering terletak antara pemeluwap dan injap pengembangan",
+      "Berfungsi untuk menyaring kotoran dan menyerap wap air menggunakan desiccant seperti silicagel (R-12) atau zeolit (R-134a).",
+      "Ia juga menyimpan bahan pendingin sementara.",
+      "Kerosakan akibat tersumbat boleh menyebabkan suhu penyaman udara tidak stabil, dan komponen ini perlu ditukar jika rosak."
+    ],
+    "Part Types": [],
+    "Part Common Issue (Seperate by /)": "",
+    "Part Prevention Method (Seperate by /)": ""
+  },
+  {
+    "Part Name": "Motor blower dan Kipas (Fan and Motor Blower)",
+    "Part Image (URL)": "/ASSETS/detail-components/07-motor-blower-dan-kipas-1.png",
+    "Part Gallery (URLs)": [
+      "/ASSETS/detail-components/07-motor-blower-dan-kipas-1.png",
+      "/ASSETS/detail-components/07-motor-blower-dan-kipas-2.png"
+    ],
+    "Part Details": "Blower berfungsi menarik udara panas ke luar kabin dan menyalurkan udara sejuk ke dalam kabin. Motor blower terdapat di dalam kabin, manakala kipas terletak di hadapan pemeluwap (di luar kabin). Blower dipasang bersama motor untuk menggerakkannya.",
+    "Part Function": [
+      "Blower berfungsi menarik udara panas ke luar kabin dan menyalurkan udara sejuk ke dalam kabin.",
+      "Motor blower terdapat di dalam kabin, manakala kipas terletak di hadapan pemeluwap (di luar kabin).",
+      "Blower dipasang bersama motor untuk menggerakkannya."
+    ],
+    "Part Types": [],
+    "Part Common Issue (Seperate by /)": "",
+    "Part Prevention Method (Seperate by /)": ""
+  },
+  {
+    "Part Name": "Sunload sensor",
+    "Part Image (URL)": "/ASSETS/detail-components/08-sunload-sensor-1.png",
+    "Part Gallery (URLs)": [
+      "/ASSETS/detail-components/08-sunload-sensor-1.png"
+    ],
+    "Part Details": "Sunload sensor merupakan photo chemical diode (PCD) yang terletak di atas papan pemuka (dashboard). Peranti ini menghantar isyarat ke electrical climate control module (ECCM) menentukan pancaran sinaran matahari di mana mempengaruhi suhu dalam kabin kenderaan. Jika sinaran matahari adalah tinggi, ECCM akan menghantar isyarat untuk meningkatkan kelajuan blower dan memaksimumkan penyejukan.",
+    "Part Function": [
+      "Sunload sensor merupakan photo chemical diode (PCD) yang terletak di atas papan pemuka (dashboard).",
+      "Peranti ini menghantar isyarat ke electrical climate control module (ECCM) menentukan pancaran sinaran matahari di mana mempengaruhi suhu dalam kabin kenderaan.",
+      "Jika sinaran matahari adalah tinggi, ECCM akan menghantar isyarat untuk meningkatkan kelajuan blower dan memaksimumkan penyejukan."
+    ],
+    "Part Types": [],
+    "Part Common Issue (Seperate by /)": "",
+    "Part Prevention Method (Seperate by /)": ""
+  },
+  {
+    "Part Name": "Ambient Temperature Sensor",
+    "Part Image (URL)": "/ASSETS/detail-components/09-ambient-temperature-sensor-1.png",
+    "Part Gallery (URLs)": [
+      "/ASSETS/detail-components/09-ambient-temperature-sensor-1.png"
+    ],
+    "Part Details": "Peranti ini merupakan negative coefficient resistor (NTC) dengan satu kemasukan voltan yang rendah. Paranti ini mengubah rintangan dengan bergantung kepada suhu udara sekeliling. Peranti ini terletak di aliran udara sekeliling yang terletak di bahagian belakang bumper bar atau kawasan hadapan gril. Peranti ini digunakan untuk memantau suhu luar dan menghubungkan ke digital paparan.",
+    "Part Function": [
+      "Peranti ini merupakan negative coefficient resistor (NTC) dengan satu kemasukan voltan yang rendah.",
+      "Paranti ini mengubah rintangan dengan bergantung kepada suhu udara sekeliling.",
+      "Peranti ini terletak di aliran udara sekeliling yang terletak di bahagian belakang bumper bar atau kawasan hadapan gril. Peranti ini digunakan untuk memantau suhu luar dan menghubungkan ke digital paparan."
+    ],
+    "Part Types": [],
+    "Part Common Issue (Seperate by /)": "",
+    "Part Prevention Method (Seperate by /)": ""
+  }
+]

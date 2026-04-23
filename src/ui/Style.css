@@ -149,6 +149,64 @@ body {
     font-weight: 600;
 }
 
+.mobile-nav-only {
+    display: none;
+}
+
+.mobile-menu-intro {
+    margin-bottom: 16px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    background: rgba(18, 97, 160, 0.08);
+    color: var(--text-main);
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+.mobile-menu-grid {
+    display: grid;
+    gap: 12px;
+}
+
+.mobile-menu-card {
+    width: 100%;
+    border: 1px solid rgba(18, 97, 160, 0.12);
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(244, 248, 252, 0.96));
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    text-align: left;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+}
+
+.mobile-menu-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    background: rgba(18, 97, 160, 0.1);
+    color: #1261a0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.mobile-menu-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.mobile-menu-copy {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
 /* Content & Panels */
 .app-content {
     flex: 1;
@@ -265,14 +323,32 @@ body {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
 }
 
+.detail-card {
+    border: 1px solid rgba(18, 97, 160, 0.12);
+}
+
 .issue-img {
     width: 100%;
     height: 140px;
     object-fit: cover;
 }
 
+.detail-img {
+    height: 220px;
+    object-fit: contain;
+    border-radius: 18px;
+    background: linear-gradient(180deg, #f7fafc, #eef3f8);
+    border: 1px solid rgba(18, 97, 160, 0.08);
+}
+
 .card-content {
     padding: 16px;
+}
+
+.detail-card .card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .issue-name {
@@ -286,6 +362,44 @@ body {
     font-size: 0.9rem;
     color: var(--text-muted);
     padding-left: 1rem;
+}
+
+.detail-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.detail-summary {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.55;
+}
+
+.detail-function-list {
+    margin: 0;
+}
+
+.detail-function-list li + li {
+    margin-top: 8px;
+}
+
+.detail-type-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.detail-type-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 10px;
+    border-radius: 999px;
+    background: rgba(18, 97, 160, 0.1);
+    color: #1261a0;
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.3;
 }
 
 .issues-hero {
@@ -472,16 +586,17 @@ body {
 .aircond-img,
 .aircond-missing {
     width: 100%;
-    height: 220px;
     display: block;
 }
 
 .aircond-img {
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
     background: #eef2f5;
 }
 
 .aircond-missing {
+    height: 220px;
     background: linear-gradient(135deg, #f5f7fa, #e9eef5);
     color: var(--text-muted);
     display: flex;
@@ -665,11 +780,42 @@ body {
 
 #modal-img {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
+    height: 260px;
+    object-fit: contain;
     border-radius: 16px;
     margin-bottom: 20px;
-    background: #f0f0f0;
+    background: linear-gradient(180deg, #f7fafc, #eef3f8);
+    border: 1px solid rgba(18, 97, 160, 0.08);
+}
+
+.modal-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.modal-thumb {
+    width: 72px;
+    height: 72px;
+    padding: 0;
+    border: 1px solid rgba(18, 97, 160, 0.12);
+    border-radius: 14px;
+    background: #fff;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.modal-thumb.active {
+    border-color: rgba(18, 97, 160, 0.55);
+    box-shadow: 0 0 0 3px rgba(18, 97, 160, 0.12);
+}
+
+.modal-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: linear-gradient(180deg, #f7fafc, #eef3f8);
 }
 
 .modal-info h4 {
@@ -689,9 +835,14 @@ body {
 .modal-footer {
     padding: 20px 24px;
     border-top: 1px solid #f0f0f0;
+}
+
+.modal-action-stack {
     display: flex;
-    gap: 12px;
-    justify-content: flex-end;
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+    width: 100%;
 }
 
 .btn-secondary {
@@ -715,10 +866,31 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
+    justify-content: center;
+}
+
+.btn-about-project {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.modal-action-stack .btn-secondary,
+.modal-action-stack .btn-primary {
+    width: 100%;
 }
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
+    .desktop-nav-only {
+        display: none !important;
+    }
+
+    .mobile-nav-only {
+        display: flex;
+    }
+
     #app-shell {
         flex-direction: column;
     }
@@ -747,12 +919,13 @@ body {
         flex-direction: row;
         justify-content: space-between;
         width: 100%;
+        gap: 0;
     }
 
     .nav-item {
         height: auto;
         padding: 8px;
-        width: auto;
+        width: 33.333%;
         background: none !important;
         box-shadow: none !important;
     }
@@ -789,9 +962,16 @@ body {
         box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
     }
 
-    .aircond-img,
     .aircond-missing {
         height: 180px;
+    }
+
+    .detail-img {
+        height: 180px;
+    }
+
+    #modal-img {
+        height: 210px;
     }
 
     .issues-hero {

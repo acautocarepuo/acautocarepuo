@@ -26,7 +26,7 @@ document.querySelector('#app').innerHTML = `
                             <img src="https://www.puo.edu.my/webportal/wp-content/uploads/2026/03/puo-kpt.png" alt="PUO Logo" class="entry-partner-logo">
                             <div class="entry-partner-copy">
                                 <span class="entry-partner-label">Academic Collaboration</span>
-                                <strong>Made by lecture from PUO</strong>
+                                <strong>Made by AC AUTO CARe PUO</strong>
                             </div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@ document.querySelector('#app').innerHTML = `
                 <section class="about-landing-hero">
                     <div class="about-landing-copy">
                         <div class="about-chip">About Project</div>
-                        <h1>AC Auto Care rethinks how car aircond systems are explained, explored, and diagnosed.</h1>
+                        <h1>AC AUTO CARe rethinks how car aircond systems are explained, explored, and diagnosed.</h1>
                         <p>
                             Designed around the Proton X50, the project brings 3D context, circuit references, practical troubleshooting guidance, component information, and AI-assisted support into one professional experience.
                         </p>
@@ -185,21 +185,29 @@ document.querySelector('#app').innerHTML = `
                     <span class="icon"><i class="ph ph-cube"></i></span>
                     <span class="label">View</span>
                 </button>
-                <button class="nav-item" id="nav-aircond" title="Aircond Circuit">
+                <button class="nav-item mobile-nav-only" id="nav-menu" title="Menu">
+                    <span class="icon"><i class="ph ph-squares-four"></i></span>
+                    <span class="label">Menu</span>
+                </button>
+                <button class="nav-item desktop-nav-only" id="nav-aircond" title="Aircond Circuit">
                     <span class="icon"><i class="ph ph-circuitry"></i></span>
                     <span class="label">Aircond</span>
                 </button>
-                <button class="nav-item" id="nav-issues" title="Diagnostics">
+                <button class="nav-item desktop-nav-only" id="nav-issues" title="Diagnostics">
                     <span class="icon"><i class="ph ph-warning-circle"></i></span>
                     <span class="label">Issues</span>
                 </button>
-                <button class="nav-item" id="nav-details" title="Part Details">
+                <button class="nav-item desktop-nav-only" id="nav-details" title="Part Details">
                     <span class="icon"><i class="ph ph-list-dashes"></i></span>
                     <span class="label">Details</span>
                 </button>
                 <button class="nav-item" id="nav-ai" title="AI Assistant">
                     <span class="icon"><i class="ph ph-chat-circle-text"></i></span>
                     <span class="label">Ask AI</span>
+                </button>
+                <button class="nav-item desktop-nav-only" id="nav-about" title="About Project">
+                    <span class="icon"><i class="ph ph-info"></i></span>
+                    <span class="label">About</span>
                 </button>
             </div>
         </nav>
@@ -209,6 +217,40 @@ document.querySelector('#app').innerHTML = `
                 <div class="status-chip">
                     <span class="status-dot"></span>
                     <span class="status-text">Interactive 3D Active</span>
+                </div>
+            </div>
+
+            <div class="panel-container hidden" id="menu-panel">
+                <header class="panel-header">
+                    <h2>Menu</h2>
+                    <button class="close-panel"><i class="ph ph-x"></i></button>
+                </header>
+                <div class="panel-body">
+                    <div class="mobile-menu-intro">
+                        Quick access to the rest of the app sections.
+                    </div>
+                    <div class="mobile-menu-grid">
+                        <button class="mobile-menu-card" data-target-panel="aircond">
+                            <span class="mobile-menu-icon"><i class="ph ph-circuitry"></i></span>
+                            <span class="mobile-menu-title">Aircond</span>
+                            <span class="mobile-menu-copy">Circuit references and video guides.</span>
+                        </button>
+                        <button class="mobile-menu-card" data-target-panel="issues">
+                            <span class="mobile-menu-icon"><i class="ph ph-warning-circle"></i></span>
+                            <span class="mobile-menu-title">Issues</span>
+                            <span class="mobile-menu-copy">Troubleshooting steps and checks.</span>
+                        </button>
+                        <button class="mobile-menu-card" data-target-panel="details">
+                            <span class="mobile-menu-icon"><i class="ph ph-list-dashes"></i></span>
+                            <span class="mobile-menu-title">Details</span>
+                            <span class="mobile-menu-copy">Components, functions, types, and images.</span>
+                        </button>
+                        <button class="mobile-menu-card" data-target-panel="about">
+                            <span class="mobile-menu-icon"><i class="ph ph-info"></i></span>
+                            <span class="mobile-menu-title">About Project</span>
+                            <span class="mobile-menu-copy">Project overview and presentation page.</span>
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -315,22 +357,28 @@ document.querySelector('#app').innerHTML = `
             </header>
             <div class="modal-body">
                 <img id="modal-img" src="" alt="">
+                <div id="modal-gallery" class="modal-gallery"></div>
                 <div class="modal-info">
-                    <h4>Common Issues</h4>
+                    <h4>Fungsi</h4>
                     <div id="modal-issues"></div>
                     
-                    <h4>Prevention</h4>
+                    <h4>Jenis</h4>
                     <div id="modal-prevention"></div>
 
-                    <h4>Description</h4>
+                    <h4>Ringkasan</h4>
                     <div id="modal-description"></div>
                 </div>
             </div>
             <footer class="modal-footer">
-                <button class="btn-secondary close-modal-btn">Close</button>
-                <button class="btn-primary" id="btn-ask-ai">
-                    <i class="ph ph-sparkle"></i> Diagnose with AI
-                </button>
+                <div class="modal-action-stack">
+                    <button class="btn-secondary close-modal-btn">Close</button>
+                    <button class="btn-primary" id="btn-ask-ai">
+                        <i class="ph ph-sparkle"></i> Diagnose with AI
+                    </button>
+                    <button class="btn-secondary btn-about-project" id="btn-go-about-project">
+                        <i class="ph ph-info"></i> About Project
+                    </button>
+                </div>
             </footer>
         </div>
     </div>
@@ -339,6 +387,7 @@ document.querySelector('#app').innerHTML = `
 // Initialize Application
 async function initApp() {
     const splash = new SplashScreen();
+    window.splashScreen = splash;
     const gemini = new GeminiService();
     const sceneManager = new SceneManager(document.getElementById('canvas-container'));
 

@@ -11,7 +11,7 @@ Kandungan utama laman:
 - Video panduan: https://www.youtube.com/embed/nm0vXRiLTqs
 - Video panduan: https://www.youtube.com/embed/_mIVKDBd8ts
 
-2. Panduan Mengesan Masalah (Jadual 3.1)
+2. Panduan Mengesan Masalah
 - Unit pemampat tidak hidup
   Punca biasa:
   - Fius terbakar / putus
@@ -44,7 +44,7 @@ export class GeminiService {
         const apiKey = import.meta.env.VITE_HF_TOKEN;
         this.modelName = import.meta.env.VITE_HF_MODEL || 'google/gemma-4-31B-it:novita';
         this.isConfigured = !!apiKey;
-        this.websiteDataUrl = 'https://opensheet.elk.sh/16Y_-z6ar4Xd_5esJKjEJtVzwKPt8Mnelb4HeJsKZkjw/data';
+        this.websiteDataUrl = '/data/component-details.json';
         this.cachedKnowledge = null;
         this.knowledgePromise = null;
 
@@ -69,8 +69,8 @@ export class GeminiService {
                     .filter((item) => item['Part Name'])
                     .map((item) => {
                         const partName = item['Part Name'];
-                        const issues = item['Part Common Issue (Seperate by /)'] || 'Tiada isu dinyatakan';
-                        const prevention = item['Part Prevention Method (Seperate by /)'] || 'Tiada langkah pencegahan dinyatakan';
+                        const issues = (item['Part Function'] || []).join(' / ') || item['Part Common Issue (Seperate by /)'] || 'Tiada isu dinyatakan';
+                        const prevention = (item['Part Types'] || []).join(' / ') || item['Part Prevention Method (Seperate by /)'] || 'Tiada jenis dinyatakan';
                         const details = item['Part Details'] || 'Tiada maklumat tambahan';
 
                         return `- ${partName}
@@ -156,10 +156,10 @@ Please answer as the AC Auto Care AI assistant. If relevant, connect the answer 
         return this.createChatCompletion(prompt);
     }
 
-    async diagnosePart(partName, commonIssues) {
+    async diagnosePart(partName, partContext) {
         const prompt = `
 Part name: ${partName}
-Known common issues: ${commonIssues}
+Known part context: ${partContext}
 
 Provide:
 1. What this part does.

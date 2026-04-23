@@ -6,14 +6,17 @@ export class PanelManager {
         // Navigation Items
         this.navItems = {
             home: document.getElementById('nav-home'),
+            menu: document.getElementById('nav-menu'),
             aircond: document.getElementById('nav-aircond'),
             issues: document.getElementById('nav-issues'),
             details: document.getElementById('nav-details'),
-            ai: document.getElementById('nav-ai')
+            ai: document.getElementById('nav-ai'),
+            about: document.getElementById('nav-about')
         };
 
         // Panels
         this.panels = {
+            menu: document.getElementById('menu-panel'),
             aircond: document.getElementById('aircond-panel'),
             issues: document.getElementById('issues-panel'),
             details: document.getElementById('details-panel'),
@@ -25,10 +28,12 @@ export class PanelManager {
             overlay: document.getElementById('detail-modal'),
             title: document.getElementById('modal-title'),
             img: document.getElementById('modal-img'),
+            gallery: document.getElementById('modal-gallery'),
             issues: document.getElementById('modal-issues'),
             prevention: document.getElementById('modal-prevention'),
             description: document.getElementById('modal-description'),
-            askBtn: document.getElementById('btn-ask-ai')
+            askBtn: document.getElementById('btn-ask-ai'),
+            aboutBtn: document.getElementById('btn-go-about-project')
         };
 
         this.loader = document.getElementById('transition-loader');
@@ -62,6 +67,11 @@ export class PanelManager {
             this.closeAllPanels();
         });
 
+        this.navItems.menu.addEventListener('click', () => {
+            this.setActiveNav('menu');
+            this.openPanel('menu');
+        });
+
         this.navItems.aircond.addEventListener('click', () => {
             this.setActiveNav('aircond');
             this.openPanel('aircond');
@@ -82,9 +92,29 @@ export class PanelManager {
             this.openPanel('ai');
         });
 
+        this.navItems.about.addEventListener('click', () => {
+            this.setActiveNav('about');
+            this.openAboutProjectFromApp();
+        });
+
         // Close Buttons
         document.querySelectorAll('.close-panel').forEach(btn => {
             btn.addEventListener('click', () => this.closeAllPanels());
+        });
+
+        document.querySelectorAll('.mobile-menu-card').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const target = btn.dataset.targetPanel;
+                if (!target) return;
+
+                if (target === 'about') {
+                    this.openAboutProjectFromApp();
+                    return;
+                }
+
+                this.setActiveNav(this.isMobileLayout() ? 'menu' : target);
+                this.openPanel(target);
+            });
         });
 
         // Modal Close
@@ -132,38 +162,71 @@ export class PanelManager {
 
     openModal(item) {
         this.modal.title.textContent = item['Part Name'];
-        this.modal.img.src = item['Part Image (URL)'];
+        const gallery = item['Part Gallery (URLs)'] || [];
+        const primaryImage = item['Part Image (URL)'] || gallery[0] || '';
+
+        this.modal.img.src = primaryImage;
         this.modal.img.onerror = () => this.modal.img.src = 'https://via.placeholder.com/300x150';
+        this.modal.gallery.innerHTML = '';
 
-        // Format lists
-        const issues = (item['Part Common Issue (Seperate by /)'] || '').split('/').map(i => `<p>• ${i.trim()}</p>`).join('');
-        this.modal.issues.innerHTML = issues || '<p>No common issues listed.</p>';
+        if (gallery.length > 1) {
+            gallery.forEach((src, index) => {
+                const thumb = document.createElement('button');
+                thumb.type = 'button';
+                thumb.className = `modal-thumb${src === primaryImage ? ' active' : ''}`;
+                thumb.setAttribute('aria-label', `View image ${index + 1} for ${item['Part Name']}`);
+                thumb.innerHTML = `<img src="${src}" alt="${item['Part Name']} image ${index + 1}">`;
+                thumb.addEventListener('click', () => {
+                    this.modal.img.src = src;
+                    this.modal.gallery.querySelectorAll('.modal-thumb').forEach((node) => node.classList.remove('active'));
+                    thumb.classList.add('active');
+                });
+                this.modal.gallery.appendChild(thumb);
+            });
+        }
 
-        const prevention = (item['Part Prevention Method (Seperate by /)'] || '').split('/').map(i => `<p>• ${i.trim()}</p>`).join('');
-        this.modal.prevention.innerHTML = prevention || '<p>No prevention methods listed.</p>';
+        const functions = item['Part Function'] || [];
+        this.modal.issues.innerHTML = this.renderParagraphList(functions, 'Tiada fungsi dinyatakan.');
 
-        // Description
+        const types = item['Part Types'] || [];
+        this.modal.prevention.innerHTML = this.renderTypeList(types, 'Tiada jenis dinyatakan.');
+
         const description = item['Part Details'] || 'No additional details available.';
         this.modal.description.innerHTML = `<p>${description}</p>`;
 
         // Setup AI Button
         this.modal.askBtn.onclick = () => {
-            this.closeModal();
-            this.setActiveNav('ai');
-            this.openPanel('ai');
+                this.closeModal();
+                this.setActiveNav('ai');
+                this.openPanel('ai');
 
-            setTimeout(() => {
-                this.addChatMessage('user', `Diagnose: ${item['Part Name']}`);
-                this.addChatMessage('ai', 'Analyzing details...');
-                // Trigger AI
-                this.geminiService.diagnosePart(item['Part Name'], item['Part Common Issue (Seperate by /)'])
+                setTimeout(() => {
+                    this.addChatMessage('user', `Diagnose: ${item['Part Name']}`);
+                    this.addChatMessage('ai', 'Analyzing details...');
+                    // Trigger AI
+                    this.geminiService.diagnosePart(item['Part Name'], item['Part Details'] || item['Part Common Issue (Seperate by /)'])
                     .then(res => {
                         // Update the last message
                         const msgs = document.querySelector('.chat-messages');
                         const bubble = msgs.lastElementChild.querySelector('.bubble');
                         bubble.innerHTML = res.replace(/\n/g, '<br>');
                     });
-            }, 300);
+                }, 300);
+        };
+
+        this.modal.aboutBtn.onclick = () => {
+            this.closeModal();
+            this.closeAllPanels();
+
+            if (window.splashScreen?.showAboutProject) {
+                window.splashScreen.showAboutProject();
+                const splashElement = document.getElementById('splash-screen');
+                if (splashElement) {
+                    splashElement.classList.remove('hidden');
+                    splashElement.style.opacity = '1';
+                    splashElement.style.pointerEvents = 'auto';
+                }
+            }
         };
 
         this.modal.overlay.classList.remove('hidden');
@@ -171,6 +234,40 @@ export class PanelManager {
 
     closeModal() {
         this.modal.overlay.classList.add('hidden');
+    }
+
+    isMobileLayout() {
+        return window.innerWidth <= 768;
+    }
+
+    openAboutProjectFromApp() {
+        this.closeAllPanels();
+
+        if (window.splashScreen?.showAboutProject) {
+            window.splashScreen.showAboutProject();
+            const splashElement = document.getElementById('splash-screen');
+            if (splashElement) {
+                splashElement.classList.remove('hidden');
+                splashElement.style.opacity = '1';
+                splashElement.style.pointerEvents = 'auto';
+            }
+        }
+    }
+
+    renderParagraphList(items, emptyText) {
+        const entries = (items || []).filter(Boolean);
+        if (!entries.length) return `<p>${emptyText}</p>`;
+        return entries.map((item) => `<p>• ${item}</p>`).join('');
+    }
+
+    renderTypeList(items, emptyText) {
+        const entries = (items || []).filter(Boolean);
+        if (!entries.length) return `<p>${emptyText}</p>`;
+        return `
+            <div class="detail-type-list">
+                ${entries.map((item) => `<span class="detail-type-chip">${item}</span>`).join('')}
+            </div>
+        `;
     }
 
     addChatMessage(role, text) {
@@ -354,7 +451,6 @@ export class PanelManager {
 
         container.innerHTML = `
             <section class="issues-hero">
-                <div class="issues-kicker">Jadual 3.1</div>
                 <h3>Panduan Mengesan Masalah</h3>
                 <p>Rujukan pantas untuk semakan kerosakan aircond kereta, lengkap dengan punca biasa dan tindakan pemeriksaan yang boleh dibuat.</p>
             </section>
@@ -393,7 +489,7 @@ export class PanelManager {
     async loadPartDetails() {
         const container = document.getElementById('details-list');
         try {
-            const res = await fetch('https://opensheet.elk.sh/16Y_-z6ar4Xd_5esJKjEJtVzwKPt8Mnelb4HeJsKZkjw/data');
+            const res = await fetch('/data/component-details.json');
             const data = await res.json();
 
             container.innerHTML = '';
@@ -402,13 +498,26 @@ export class PanelManager {
                 if (!item['Part Name']) return;
 
                 const card = document.createElement('div');
-                card.className = 'issue-card'; // Reusing issue-card for consistent styling
+                const functionPreview = (item['Part Function'] || [])
+                    .slice(0, 2)
+                    .map((entry) => `<li>${entry}</li>`)
+                    .join('');
+
+                const typePreview = (item['Part Types'] || [])
+                    .map((entry) => `<span class="detail-type-chip">${entry}</span>`)
+                    .join('');
+
+                card.className = 'issue-card detail-card';
                 card.innerHTML = `
                     <div class="card-content">
-                        <img src="${item['Part Image (URL)']}" class="issue-img" onerror="this.src='https://via.placeholder.com/300x150'">
-                        <div class="issue-name">${item['Part Name']}</div>
-                        <div class="issue-list">
-                            ${item['Part Details']}
+                        <img src="${item['Part Image (URL)']}" class="issue-img detail-img" onerror="this.src='https://via.placeholder.com/300x150'">
+                        <div class="detail-card-body">
+                            <div class="issue-name">${item['Part Name']}</div>
+                            <div class="detail-summary">Fungsi utama komponen dan rujukan jenis daripada dokumen asal.</div>
+                            <ul class="issue-list detail-function-list">
+                                ${functionPreview}
+                            </ul>
+                            ${typePreview ? `<div class="detail-type-list">${typePreview}</div>` : ''}
                         </div>
                     </div>
                 `;
