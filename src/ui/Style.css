@@ -2043,6 +2043,8 @@ body {
     padding: 40px;
     position: relative;
     overflow: hidden;
+    align-items: center;
+    text-align: center;
     background:
         radial-gradient(circle at top right, rgba(138, 198, 255, 0.24), transparent 32%),
         radial-gradient(circle at 10% 90%, rgba(255, 220, 167, 0.18), transparent 26%),
@@ -2070,12 +2072,13 @@ body {
 
 .entry-brand-row {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     gap: 16px;
     margin-bottom: 18px;
     position: relative;
     z-index: 1;
+    width: 100%;
 }
 
 .entry-partner-badge {
@@ -2101,6 +2104,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 4px;
+    align-items: center;
+    text-align: center;
 }
 
 .entry-partner-label {
@@ -2117,36 +2122,32 @@ body {
     line-height: 1.4;
 }
 
-.entry-kicker {
-    background: transparent;
-    color: #5a738d;
-    padding: 0;
-    border-radius: 0;
-    font-size: 0.78rem;
-    letter-spacing: 0.14em;
-}
-
 .entry-hero h1 {
-    max-width: 12ch;
-    margin-top: 14px;
-    font-size: clamp(2.1rem, 4vw, 3.8rem);
-    line-height: 1.04;
-    letter-spacing: -0.04em;
-    font-weight: 700;
+    max-width: none;
+    margin-top: 18px;
+    font-size: clamp(3.3rem, 7vw, 5.6rem);
+    line-height: 0.98;
+    letter-spacing: -0.06em;
+    font-weight: 800;
     color: #142434;
+    text-wrap: balance;
+    text-shadow: 0 10px 24px rgba(20, 36, 52, 0.06);
 }
 
 .entry-hero p {
-    max-width: 620px;
-    margin-top: 18px;
-    color: #6d7f91;
-    font-size: 0.98rem;
-    line-height: 1.75;
+    max-width: 680px;
+    margin-top: 20px;
+    color: #6f8296;
+    font-size: 0.88rem;
+    line-height: 1.9;
+    letter-spacing: -0.01em;
+    text-wrap: pretty;
 }
 
 .entry-actions {
-    gap: 12px;
-    margin-top: 26px;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 30px;
 }
 
 .entry-btn,
@@ -2324,7 +2325,7 @@ body {
 
     .entry-hero h1 {
         max-width: none;
-        font-size: 2.2rem;
+        font-size: 2.8rem;
     }
 
     .entry-shell {

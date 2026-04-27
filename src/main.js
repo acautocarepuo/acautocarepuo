@@ -30,10 +30,9 @@ document.querySelector('#app').innerHTML = `
                             </div>
                         </div>
                     </div>
-                    <div class="entry-kicker">AC Auto Care</div>
-                    <h1>Professional aircond diagnostics for clearer inspection and learning.</h1>
+                    <h1>AC AUTO CARe</h1>
                     <p>
-                        Built around the Proton X50, the platform combines 3D visualization, circuit references, troubleshooting guidance, and AI-assisted support in one environment.
+                        AC AUTO CARe merupakan produk perkhidmatan yang dibangunkan di Politeknik Ungku Omar yang menawarkan khidmat nasihat, sijil kemahiran bertauliah dalam bidang Heating, Ventilation and Air Conditioning (HVAC) Vehicle, latihan serta penyelenggaraan. Penawaran produk perkhidmatan ini terbahagi kepada 2 pakej iaitu Pakej 1 – Latihan & Khidmat Nasihat dan Pakej 2 - Penyelenggaraan & Khidmat Nasihat. Oleh itu, aplikasi ini dibangunkan sebagai pemudahcara bagi pengguna untuk mendapatkan maklumat yang terperinci dalam sistem penyaman udara kenderaan samada dari segi sistem sehinggalah penyelesaian masalah yang dialami oleh pengguna.
                     </p>
                     <div class="entry-actions">
                         <button class="entry-btn primary" id="btn-continue-app">Continue</button>
