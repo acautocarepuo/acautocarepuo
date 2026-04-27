@@ -23,7 +23,8 @@ document.querySelector('#app').innerHTML = `
                 <div class="entry-hero">
                     <div class="entry-brand-row">
                         <div class="entry-partner-badge">
-                            <img src="https://www.puo.edu.my/webportal/wp-content/uploads/2026/03/puo-kpt.png" alt="PUO Logo" class="entry-partner-logo">
+                            <img src="https://www.puo.edu.my/webportal/wp-content/uploads/2026/03/puo-kpt.png" alt="PUO Logo" class="entry-partner-logo entry-partner-logo-puo">
+                            <img src="public/ASSETS/Logo/AC_AUTO_CARE-removebg-preview.png" alt="AC Auto Care Logo" class="entry-partner-logo">
                             <div class="entry-partner-copy">
                                 <span class="entry-partner-label">Academic Collaboration</span>
                                 <strong>Made by AC AUTO CARe PUO</strong>

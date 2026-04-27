@@ -2043,8 +2043,8 @@ body {
     padding: 40px;
     position: relative;
     overflow: hidden;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
     background:
         radial-gradient(circle at top right, rgba(138, 198, 255, 0.24), transparent 32%),
         radial-gradient(circle at 10% 90%, rgba(255, 220, 167, 0.18), transparent 26%),
@@ -2072,7 +2072,7 @@ body {
 
 .entry-brand-row {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 16px;
     margin-bottom: 18px;
@@ -2100,12 +2100,16 @@ body {
     display: block;
 }
 
+.entry-partner-logo-puo {
+    width: 124px;
+}
+
 .entry-partner-copy {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
 }
 
 .entry-partner-label {
@@ -2125,9 +2129,9 @@ body {
 .entry-hero h1 {
     max-width: none;
     margin-top: 18px;
-    font-size: clamp(3.3rem, 7vw, 5.6rem);
-    line-height: 0.98;
-    letter-spacing: -0.06em;
+    font-size: clamp(3rem, 6vw, 5.2rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
     font-weight: 800;
     color: #142434;
     text-wrap: balance;
@@ -2138,21 +2142,24 @@ body {
     max-width: 680px;
     margin-top: 20px;
     color: #6f8296;
-    font-size: 0.88rem;
-    line-height: 1.9;
+    font-size: 0.78rem;
+    line-height: 1.78;
     letter-spacing: -0.01em;
     text-wrap: pretty;
 }
 
 .entry-actions {
-    justify-content: center;
+    justify-content: flex-start;
     gap: 14px;
     margin-top: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .entry-btn,
 .about-nav-btn {
-    min-width: 150px;
+    width: 100%;
     border-radius: 12px;
     padding: 13px 20px;
     font-size: 0.93rem;
@@ -2301,12 +2308,13 @@ body {
     }
 
     .entry-partner-badge {
-        width: 100%;
+        width: auto;
         align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
+        justify-content: flex-start;
+        flex-direction: row;
+        flex-wrap: wrap;
+        text-align: left;
+        gap: 8px 12px;
         padding: 10px 12px;
         border-radius: 14px;
         border: 1px solid rgba(37, 77, 116, 0.06);
@@ -2314,18 +2322,29 @@ body {
     }
 
     .entry-partner-logo {
-        width: 82px;
-        margin: 0 auto;
+        width: 78px;
+        margin: 0;
+    }
+
+    .entry-partner-logo-puo {
+        width: 96px;
     }
 
     .entry-partner-copy {
-        align-items: center;
-        text-align: center;
+        flex-basis: 100%;
+        align-items: flex-start;
+        text-align: left;
     }
 
     .entry-hero h1 {
         max-width: none;
-        font-size: 2.8rem;
+        font-size: 2.6rem;
+        line-height: 1.04;
+    }
+
+    .entry-hero p {
+        font-size: 0.74rem;
+        line-height: 1.72;
     }
 
     .entry-shell {
